@@ -1,8 +1,8 @@
 class Employee
 {
-  int id;
-  String firstName;
-  String lastName;
+  int? id;
+  String? firstName;
+  String? lastName;
 
   Employee({this.id,this.firstName,this.lastName});
 

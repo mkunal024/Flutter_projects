@@ -17,7 +17,7 @@ class Services {
       var map = Map<String, dynamic>();
       map['action'] = _CREATE_TABLE_ACTION;
 
-      final response = await http.post(ROOT, body: map);
+      final response = await http.post(Uri.parse(ROOT), body: map);
       print('CREATE TABLE Response : ${response.body}');
       return response.body;
     }
@@ -29,20 +29,20 @@ class Services {
   static Future<List<Employee>> getEmployees() async
   {
     try {
-      var map = Map<String, dynamic>;
+      var map = Map<String, dynamic>();
       map['action'] = _GET_ALL_ACTION;
-      final response = await http.post(ROOT, body: map);
+      final response = await http.post(Uri.parse(ROOT), body: map);
       print('Get employees : ${response.body}');
       if (200 == response.statusCode) {
         List<Employee> list = parseResponse(response.body);
         return list;
       }
       else {
-        return List<Employee>();
+        return List<Employee>.empty();
       }
     }
     catch (e) {
-      return List<Employee>();
+      return List<Employee>.empty();
     }
   }
 
@@ -55,11 +55,11 @@ class Services {
   static Future<String> addEmployee(String firstName, String lastName) async
   {
     try{
-      var map = Map<String,dynamic>;
+      var map = Map<String,dynamic>();
       map['action']=_ADD_EMP_ACTION;
       map['first_name']= firstName;
       map['last_name']=lastName;
-      final response = await http.post(ROOT,body:map);
+      final response = await http.post(Uri.parse(ROOT),body:map);
       print('Add employee Response: ${response.body}');
       if(200==response.statusCode)
         {
@@ -79,10 +79,10 @@ class Services {
   static Future<String> deleteEmployee(int empId) async
   {
     try{
-      var map = Map<String,dynamic>;
+      var map = Map<String,dynamic>();
       map['action']=_DELETE_EMP_ACTION;
       map['emp_id']=empId;
-      final response = await http.post(ROOT,body:map);
+      final response = await http.post(Uri.parse(ROOT),body:map);
       print('Add employee Response: ${response.body}');
       if(200==response.statusCode)
       {
@@ -102,12 +102,12 @@ class Services {
   static Future<String> updateEmployee(int empId, String firstName, String lastName) async
   {
     try{
-      var map = Map<String,dynamic>;
+      var map = Map<String,dynamic>();
       map['action']=_UPDATE_EMP_ACTION;
       map['emp_id']=empId;
       map['first_name']= firstName;
       map['last_name']=lastName;
-      final response = await http.post(ROOT,body:map);
+      final response = await http.post(Uri.parse(ROOT),body:map);
       print('Add employee Response: ${response.body}');
       if(200==response.statusCode)
       {
